@@ -1,5 +1,7 @@
 package fr.diginamic;
 
+import fr.diginamic.enties.Client;
+import fr.diginamic.enties.Emprunt;
 import fr.diginamic.enties.Livre;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -13,7 +15,7 @@ public class ConnexionJpa  {
         em.getTransaction().begin();
 
         // Récupération d'un livre en fonction de son ID
-        Livre livre = em.find(Livre.class,1);
+       Livre livre = em.find(Livre.class,1);
 
         if (livre != null) {
             System.out.println("Livre trouvé : " + livre.getTitre() );
@@ -22,6 +24,18 @@ public class ConnexionJpa  {
         }
         Livre livre2 = new Livre("vivre ensemble","sadid");
         em.persist(livre2);
+
+
+        //
+
+        Emprunt emprunt = em.find(Emprunt.class,2);
+
+        if (null != emprunt) {
+            System.out.println("trouvé"+emprunt.getLivres().iterator());
+        }
+  // Récuperation d'un client avec tous ses emprunts
+
+
         em.getTransaction().commit();
 
 

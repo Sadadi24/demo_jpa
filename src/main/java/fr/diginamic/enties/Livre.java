@@ -2,6 +2,8 @@ package fr.diginamic.enties;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "LIVRE")
 public class Livre {
@@ -13,6 +15,8 @@ public class Livre {
     private String titre;
     @Column(name = "AUTEUR")
     private String auteur;
+    @ManyToMany(mappedBy = "livres")
+    private Set<Emprunt> emprunts;
 
 
     public Livre() {}
@@ -35,5 +39,15 @@ public class Livre {
     }
     public void setTitre(String titre) {
         this.titre = titre;
+    }
+
+    @Override
+    public String toString() {
+        return "Livre{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", auteur='" + auteur + '\'' +
+                ", emprunts=" + emprunts +
+                '}';
     }
 }
